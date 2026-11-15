@@ -1,0 +1,24 @@
+ENTRENO - app del plan de 4 dias (Moto G71 5G / Android 12)
+
+OPCION A (la mas simple, sin servidor)
+1. Copia la carpeta "app" al celular (cable USB, Drive, etc.).
+2. Abre index.html con Chrome (Archivos > index.html > Abrir con Chrome).
+   Los datos se guardan en el navegador. Funciona sin internet.
+   Nota: si limpias los datos de Chrome se pierden; usa Historial > Exportar.
+
+OPCION B (instalable como app, pantalla completa)
+1. En la Mac, dentro de esta carpeta:   python3 -m http.server 8080
+2. Celular y Mac en el mismo WiFi. En Chrome del celular abre
+   http://IP_DE_TU_MAC:8080   (IP: ifconfig | grep "inet ")
+3. Menu de Chrome (⋮) > "Instalar app" / "Agregar a pantalla de inicio".
+   Despues funciona offline. (Si la instalacion como app no aparece por
+   ser http, usa "Agregar a pantalla de inicio" igualmente; o sube la carpeta
+   a GitHub Pages/Netlify, que dan https.)
+
+USO
+- Pestanas 1-4: cada dia. Toca un ejercicio para abrirlo.
+- Anota peso y reps por serie, marca ✓ (arranca el temporizador de descanso).
+- Debajo de cada ejercicio hay un cuadro de notas.
+- Se muestra "Ultima vez" con lo de tu sesion anterior del mismo dia.
+- "Finalizar sesion" guarda en el Historial y limpia el dia.
+- Historial > Exportar/Importar para copias de seguridad.
