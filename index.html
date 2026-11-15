@@ -11,14 +11,25 @@
 :root{--bg:#111418;--card:#1b2027;--card2:#232a33;--txt:#eef1f5;--mut:#8f9bab;--acc:#3ddc97;--acc2:#2a9d6c;--warn:#ffb84d;--line:#2d3641}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.4 system-ui,Roboto,sans-serif}
-body{padding-bottom:90px}
-header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 12px 8px}
-h1{margin:0 0 8px;font-size:18px;display:flex;justify-content:space-between;align-items:center}
-h1 small{color:var(--mut);font-weight:400;font-size:12px}
+body{padding-bottom:30px}
+body.hasT{padding-bottom:90px}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 12px}
+.nav{display:flex;gap:6px;margin-bottom:8px}
+.nav button{flex:1;padding:9px 0;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:10px;font-size:14px;font-weight:600}
+.nav button.on{background:var(--txt);color:#111418;border-color:var(--txt)}
+.wkbar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.wkbar .c{flex:1;text-align:center;line-height:1.2}
+.wkbar .c b{font-size:16px}.wkbar .c small{display:block;color:var(--mut);font-size:12px}
+.wkbar button{width:44px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:18px}
+.wkbar button:disabled{opacity:.3}
+.cur{color:var(--acc);font-size:11px;font-weight:700;margin-left:4px}
 .tabs{display:flex;gap:6px}
-.tab{flex:1;padding:10px 0;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:10px;font-size:14px;font-weight:600;text-align:center}
+.tab{flex:1;padding:7px 0;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:10px;font-size:15px;font-weight:700;text-align:center;position:relative}
 .tab.on{background:var(--acc);color:#06281a;border-color:var(--acc)}
-.tab span{display:block;font-size:10px;font-weight:400;opacity:.8}
+.tab span{display:block;font-size:10px;font-weight:400;opacity:.85}
+.tab.ok::after{content:"✓";position:absolute;top:1px;right:5px;font-size:11px;color:var(--acc)}
+.tab.on.ok::after{color:#06281a}
+.tab.today{border-color:var(--warn)}
 main{padding:12px;max-width:640px;margin:0 auto}
 .dayhead{margin:4px 0 12px}
 .dayhead h2{margin:0;font-size:19px}
@@ -39,7 +50,7 @@ main{padding:12px;max-width:640px;margin:0 auto}
 .row{display:grid;grid-template-columns:26px 1fr 1fr 44px;gap:8px;align-items:center;margin-bottom:8px}
 .row.t{grid-template-columns:26px 1fr 44px}
 .row .s{color:var(--mut);text-align:center;font-size:13px}
-input[type=number],textarea{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:11px 8px;font-size:17px;font-family:inherit}
+input[type=number],input[type=date],textarea{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:11px 8px;font-size:17px;font-family:inherit}
 input[type=number]{text-align:center}
 input:focus,textarea:focus{outline:2px solid var(--acc);border-color:transparent}
 textarea{font-size:15px;min-height:64px;resize:vertical;margin-top:4px}
@@ -47,196 +58,248 @@ textarea{font-size:15px;min-height:64px;resize:vertical;margin-top:4px}
 .chk.on{background:var(--acc);border-color:var(--acc);color:#06281a}
 .lbl{display:grid;grid-template-columns:26px 1fr 1fr 44px;gap:8px;color:var(--mut);font-size:11px;text-align:center;margin-bottom:4px}
 .lbl.t{grid-template-columns:26px 1fr 44px}
-.tip{font-size:12px;color:var(--mut);margin:0 0 8px}
-.btn{background:var(--acc);color:#06281a;border:0;border-radius:12px;padding:14px;font-weight:700;font-size:16px;width:100%;margin-top:6px}
-.btn.sec{background:var(--card2);color:var(--txt);border:1px solid var(--line);font-weight:600;font-size:14px;padding:11px}
+.btn{background:var(--acc);color:#06281a;border:0;border-radius:12px;padding:12px;font-weight:700;font-size:15px;width:100%}
+.btn.sec{background:var(--card2);color:var(--txt);border:1px solid var(--line);font-weight:600;font-size:14px}
 .small{display:flex;gap:8px;margin-top:8px}
-.small .btn{margin:0}
-.hist{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:13px}
-.hist b{color:var(--acc)}
-.hist .ln{color:var(--mut);margin-top:2px}
 h3{margin:18px 0 8px;font-size:15px}
-.notes{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--mut)}
-.notes b{color:var(--txt)}
-#timer{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;gap:8px;align-items:center;z-index:9}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.card .top{display:flex;justify-content:space-between;gap:10px;cursor:pointer}
+.card .top b{font-size:15px}
+.delta{font-size:12px;font-weight:700;white-space:nowrap}
+.up{color:var(--acc)}.dn{color:#ff7b7b}.eq{color:var(--mut)}
+.card svg{width:100%;height:46px;margin-top:6px;display:block}
+.det{display:none;margin-top:8px;border-top:1px solid var(--line);padding-top:8px;font-size:13px}
+.card.open .det{display:block}
+.det .w{margin-bottom:6px}.det .w b{color:var(--acc)}.det .n{color:var(--mut)}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px}
+summary{font-weight:600;font-size:15px;cursor:pointer}
+details p{margin:8px 0;font-size:14px;color:#cdd5df}
+details p.b{padding-left:10px;color:var(--mut)}
+#timer{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:none;gap:8px;align-items:center;z-index:9}
+body.hasT #timer{display:flex}
 #timer .t{font-size:24px;font-weight:700;min-width:70px;font-variant-numeric:tabular-nums}
 #timer .t.end{color:var(--warn)}
 #timer button{flex:1;background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 0;font-weight:600;font-size:14px}
 </style>
 </head>
 <body>
-<header>
-  <h1>💪 Entreno <small id="wk"></small></h1>
-  <div class="tabs" id="tabs"></div>
-</header>
+<header id="head"></header>
 <main id="main"></main>
 <div id="timer">
   <div class="t" id="tt">0:00</div>
   <button data-s="60">60s</button><button data-s="90">90s</button><button data-s="150">2:30</button><button data-s="0">⏹</button>
 </div>
 
+<script src="plan.js"></script>
 <script>
-const DAYS=[
-{id:"d1",tab:"Lun",title:"Día 1 · Cuerpo completo A",sub:"Fuerza base",ex:[
- ["Sentadilla (barra, goblet o prensa)",3,"6-8","1-2"],
- ["Press plano (barra o mancuernas)",3,"6-8","1-2"],
- ["Remo con apoyo al pecho (mancuernas, banco 45°)",3,"8-10","1-2"],
- ["Press hombro sentado (mancuernas o máquina)",2,"8-10","1-2"],
- ["Curl femoral (sentado o tumbado)",2,"10-12","0-1"],
- ["Curl martillo cruzado",2,"10-12","0-1"],
- ["Extensión de tríceps en polea (soga)",2,"10-12","0-1"]]},
-{id:"d2",tab:"Mar",title:"Día 2 · Cuerpo completo B",sub:"Bisagra y espalda vertical",ex:[
- ["Peso muerto rumano (barra o mancuernas)",3,"6-8","1-2"],
- ["Jalón al pecho agarre abierto",3,"8-10","1"],
- ["Press inclinado (mancuernas)",3,"8-10","1-2"],
- ["Elevaciones laterales sentado (mancuernas)",3,"12-15","0-1"],
- ["Face pull (sostener 2 s atrás)",3,"12-15","1"],
- ["Curl inclinado en banco 45°",3,"10-12","0-1"],
- ["Plancha",3,"45-60 s","",true]]},
-{id:"d3",tab:"Jue",title:"Día 3 · Cuerpo completo C",sub:"Volumen moderado",ex:[
- ["Prensa de piernas",3,"8-12","1"],
- ["Fondos en paralelas (asistidos) o press en máquina",3,"8-12","1"],
- ["Remo en polea baja o máquina",3,"10-12","1"],
- ["Hip thrust (barra o máquina)",2,"8-12","1-2"],
- ["Elevaciones laterales en polea (a una mano)",3,"12-15","0-1"],
- ["Extensión de tríceps sobre la cabeza (soga o mancuerna)",3,"10-12","0-1"],
- ["Curl en banco Scott",2,"10-12","0-1"]]},
-{id:"d4",tab:"Vie",title:"Día 4 · Cuerpo completo D",sub:"Unilateral y hombros",ex:[
- ["Sentadilla búlgara o zancadas con mancuernas",3,"8-10","1-2"],
- ["Jalón agarre neutro/cerrado",3,"10-12","1"],
- ["Press hombro (máquina o mancuernas)",2,"8-10","1-2"],
- ["Cruces en polea (media o baja)",3,"12-15","0-1"],
- ["Curl femoral",2,"10-12","0-1"],
- ["Elevaciones laterales (cualquier variante)",2,"15-20","0"],
- ["Face pull o pájaros (deltoide posterior)",2,"12-15","1"],
- ["Curl martillo cruzado",2,"10-12","0-1"],
- ["Plancha",3,"45-60 s","",true]]}
-];
-const RULES=`<b>Calentamiento:</b> 5 min cardio suave + 2 series de aproximación (50% y 75%) en el primer ejercicio.<br>
-<b>Descanso:</b> 2-3 min en básicos, 60-90 s en aislamientos.<br>
-<b>Progresión doble:</b> cuando llegues al tope del rango en TODAS las series con buena técnica y RIR 1-2, sube peso (2.5-5%) y vuelve al piso del rango.<br>
-<b>Tempo:</b> bajar en 2-3 s, subir controlado.<br>
-<b>Semanas 1-2:</b> RIR 3. <b>3-8:</b> RIR 1-2 / 0-1. <b>Semana 9:</b> descarga (50% de series, RIR 3-4).<br>
-<b>Fallo total</b> solo en máquinas/poleas. Nunca en sentadilla, peso muerto ni press con barra sin seguros.`;
-
-const KEY="entreno_v1";
-let S;
-try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-if(!S||!S.log)S={log:{},hist:[],tab:"d1",open:{}};
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const KEY="entreno_v2", START_DEFAULT="2026-11-15";
+const WD={DOMINGO:0,LUNES:1,MARTES:2,MIERCOLES:3,JUEVES:4,VIERNES:5,SABADO:6};
+const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const DAYS=PLAN.days;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const dayById=id=>DAYS.find(d=>d.id===id);
 
-function entry(day,i,n){
-  const L=S.log[day]||(S.log[day]={});
-  const e=L[i]||(L[i]={sets:[],note:""});
+// ---------- fechas
+const pd=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d,12)};
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const fd=d=>d.getDate()+" "+MES[d.getMonth()];
+const DAY=864e5;
+
+// ---------- estado
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S||!S.weeks){S={start:START_DEFAULT,weeks:{},view:"w",wk:null,day:null,open:{},pOpen:{}};migrate()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const start0=()=>pd(S.start);
+const weekOf=d=>Math.max(1,Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate(),12)-start0())/DAY/7)+1);
+const curWeek=()=>weekOf(new Date());
+const weekStart=w=>addD(start0(),(w-1)*7);
+
+function migrate(){ // datos de la version 1 (sin semanas)
+  let o;try{o=JSON.parse(localStorage.getItem("entreno_v1"))}catch(e){}
+  if(!o)return;
+  const put=(w,dayId,data)=>{const d=DAYS.find(x=>x.id===dayId);if(!d)return;
+    const W=S.weeks[w]||(S.weeks[w]={}),D=W[dayId]||(W[dayId]={});
+    for(const i in data){const x=d.ex[i];if(x&&!D[x[0]])D[x[0]]=data[i]}};
+  (o.hist||[]).forEach(h=>put(weekOf(new Date(h.date)),h.day,h.data));
+  for(const dayId in (o.log||{}))put(curWeek(),dayId,o.log[dayId]);
+  save();
+}
+
+// ---------- datos
+function entry(w,day,name,n){
+  const W=S.weeks[w]||(S.weeks[w]={}),D=W[day]||(W[day]={});
+  const e=D[name]||(D[name]={sets:[],note:""});
   while(e.sets.length<n)e.sets.push({w:"",r:"",d:false});
   return e;
 }
-function lastOf(day,i){
-  for(let k=S.hist.length-1;k>=0;k--){
-    const h=S.hist[k];
-    if(h.day!==day)continue;
-    const e=h.data[i];
-    if(e&&(e.sets.some(s=>s.w!==""||s.r!=="")||e.note))return {date:h.date,e};
-  }
+const peek=(w,day,name)=>(S.weeks[w]&&S.weeks[w][day]&&S.weeks[w][day][name])||null;
+const hasData=e=>e&&(e.note||e.sets.some(s=>s.w!==""||s.r!==""));
+function lastOf(w,day,name){
+  for(let v=w-1;v>=1;v--){const e=peek(v,day,name);if(hasData(e))return{v,e}}
   return null;
 }
-function fmtLast(l,time){
-  const parts=l.e.sets.filter(s=>s.w!==""||s.r!=="").map(s=>time?(s.r+"s"):((s.w||"-")+"kg×"+(s.r||"-")));
-  const d=new Date(l.date).toLocaleDateString("es",{day:"numeric",month:"short"});
-  return d+": "+parts.join(" · ")+(l.e.note?" 📝 "+l.e.note:"");
+const fmtSets=(e,time)=>e.sets.filter(s=>s.w!==""||s.r!=="").map(s=>time?s.r+"s":(s.w||"-")+"kg×"+(s.r||"-")).join(" · ");
+const num=v=>{const x=parseFloat(String(v).replace(",","."));return isNaN(x)?null:x};
+
+// ---------- hoy
+function todayDay(){ // dia de entreno de hoy o el proximo de esta semana
+  const t=new Date(),w=curWeek(),ws=weekStart(w);
+  const off=Math.round((new Date(t.getFullYear(),t.getMonth(),t.getDate(),12)-ws)/DAY);
+  let pick=null;
+  for(const d of DAYS){const o=(WD[d.wd]-0+7)%7; if(o>=off){pick=d;break}}
+  return (pick||DAYS[0]).id;
+}
+const dayDate=(w,d)=>addD(weekStart(w),WD[d.wd]);
+if(!S.wk||S.wk>curWeek())S.wk=curWeek();
+if(!S.day||!DAYS.find(d=>d.id===S.day))S.day=todayDay();
+
+// ---------- cabecera
+function head(){
+  const cw=curWeek(),w=S.wk;
+  let h=`<div class="nav">${[["w","🏋 Entreno"],["p","📈 Progreso"],["h","❓ Ayuda"]].map(([k,l])=>`<button data-v="${k}" class="${S.view===k?"on":""}">${l}</button>`).join("")}</div>`;
+  if(S.view==="w"){
+    const a=weekStart(w),b=addD(a,6);
+    h+=`<div class="wkbar"><button data-wk="-1" ${w<=1?"disabled":""}>◀</button><div class="c"><b>Semana ${w}${w===cw?'<span class="cur">ACTUAL</span>':""}</b><small>${fd(a)} – ${fd(b)}</small></div><button data-wk="1" ${w>=cw?"disabled":""}>▶</button></div>`;
+    const tdy=new Date(),tw=weekOf(tdy),tiso=iso(tdy);
+    h+=`<div class="tabs">${DAYS.map(d=>{
+      const dt=dayDate(w,d),n=d.ex.reduce((s,x)=>s+x[1],0);
+      const dn=d.ex.reduce((s,x)=>{const e=peek(w,d.id,x[0]);return s+(e?e.sets.slice(0,x[1]).filter(q=>q.d).length:0)},0);
+      return `<button class="tab ${S.day===d.id?"on":""} ${dn===n?"ok":""} ${w===tw&&iso(dt)===tiso?"today":""}" data-t="${d.id}">${d.id.slice(1)}<span>${d.wd.slice(0,3).toLowerCase()} ${dt.getDate()}</span></button>`}).join("")}</div>`;
+  }
+  $("#head").innerHTML=h;
+  document.body.classList.toggle("hasT",S.view==="w");
 }
 
-function renderTabs(){
-  $("#tabs").innerHTML=DAYS.map(d=>`<button class="tab ${S.tab===d.id?"on":""}" data-t="${d.id}">${d.id[1]}<span>${d.tab}</span></button>`).join("")
-   +`<button class="tab ${S.tab==="h"?"on":""}" data-t="h">📋<span>Hist.</span></button>`;
-  const wk=S.hist.length;
-  $("#wk").textContent=wk+" sesiones guardadas";
-}
-function render(){
-  renderTabs();
-  if(S.tab==="h")return renderHist();
-  const d=dayById(S.tab);
+// ---------- vista semana/dia
+function viewWeek(){
+  const d=DAYS.find(x=>x.id===S.day),w=S.wk;
   let total=0,done=0;
-  const exs=d.ex.map((x,i)=>{
-    const [name,n,reps,rir,time]=x;
-    const e=entry(d.id,i,n);
+  const exs=d.ex.map(([name,n,reps,rir,time],i)=>{
+    const e=entry(w,d.id,name,n);
     const dn=e.sets.slice(0,n).filter(s=>s.d).length;
     total+=n;done+=dn;
-    const l=lastOf(d.id,i);
-    const open=S.open[d.id+i];
+    const l=lastOf(w,d.id,name);
+    const open=S.open[w+d.id+i];
+    const ph=(k,f,def)=>esc((l&&l.e.sets[k]&&l.e.sets[k][f])||def);
     const rows=e.sets.slice(0,n).map((s,k)=>time?
-      `<div class="row t"><div class="s">${k+1}</div><input type="number" inputmode="numeric" placeholder="${l&&l.e.sets[k]&&l.e.sets[k].r||"seg"}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`
-      :`<div class="row"><div class="s">${k+1}</div><input type="number" inputmode="decimal" step="any" placeholder="${l&&l.e.sets[k]&&l.e.sets[k].w||"kg"}" value="${esc(s.w)}" data-i="${i}" data-k="${k}" data-f="w"><input type="number" inputmode="numeric" placeholder="${l&&l.e.sets[k]&&l.e.sets[k].r||reps.split("-")[0]}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`).join("");
+      `<div class="row t"><div class="s">${k+1}</div><input type="number" inputmode="numeric" placeholder="${ph(k,"r","seg")}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`
+      :`<div class="row"><div class="s">${k+1}</div><input type="number" inputmode="decimal" step="any" placeholder="${ph(k,"w","kg")}" value="${esc(s.w)}" data-i="${i}" data-k="${k}" data-f="w"><input type="number" inputmode="numeric" placeholder="${ph(k,"r",reps.split("-")[0])}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`).join("");
     return `<div class="ex ${dn===n?"done":""} ${open?"open":""}">
       <div class="exh" data-o="${i}"><div class="num">${dn===n?"✓":i+1}</div>
-      <div><b>${esc(name)}</b><div class="meta">${n} × ${reps}${rir?` · <em>RIR ${rir}</em>`:""} · ${dn}/${n}</div>
-      ${l?`<div class="last">Última vez → ${esc(fmtLast(l,time))}</div>`:""}</div></div>
+      <div><b>${esc(name)}</b><div class="meta">${n} × ${esc(reps)}${rir?` · <em>RIR ${rir}</em>`:""} · ${dn}/${n}</div>
+      ${l?`<div class="last">Sem ${l.v} → ${esc(fmtSets(l.e,time))}${l.e.note?" 📝 "+esc(l.e.note):""}</div>`:""}</div></div>
       <div class="body">
         <div class="lbl ${time?"t":""}"><span>#</span>${time?"<span>Segundos</span>":"<span>Peso (kg)</span><span>Reps</span>"}<span></span></div>
         ${rows}
         <textarea placeholder="Notas (sensaciones, técnica, ajuste de banco…)" data-n="${i}">${esc(e.note)}</textarea>
       </div></div>`;
   }).join("");
-  $("#main").innerHTML=`<div class="dayhead"><h2>${esc(d.title)}</h2><p>${esc(d.sub)} · ${d.ex.length} ejercicios · ${total} series</p><div class="prog"><i style="width:${total?done/total*100:0}%"></i></div></div>
-   ${exs}
-   <button class="btn" id="fin">✔ Finalizar sesión y guardar</button>
-   <h3>Reglas generales</h3><div class="notes">${RULES}</div>`;
-}
-function renderHist(){
-  const items=S.hist.slice().reverse().map((h,ri)=>{
-    const idx=S.hist.length-1-ri;
-    const d=dayById(h.day);
-    const lines=d.ex.map((x,i)=>{
-      const e=h.data[i];if(!e)return"";
-      const sets=e.sets.filter(s=>s.w!==""||s.r!=="").map(s=>x[4]?s.r+"s":(s.w||"-")+"×"+(s.r||"-"));
-      if(!sets.length&&!e.note)return"";
-      return `<div class="ln">${esc(x[0])}: ${sets.join(" · ")}${e.note?" 📝 "+esc(e.note):""}</div>`}).join("");
-    return `<div class="hist"><b>${esc(d.title)}</b> · ${new Date(h.date).toLocaleDateString("es",{weekday:"short",day:"numeric",month:"short"})}${lines}<div class="small"><button class="btn sec" data-del="${idx}">Borrar</button></div></div>`}).join("");
-  $("#main").innerHTML=`<div class="dayhead"><h2>Historial</h2><p>Sesiones finalizadas</p></div>${items||'<p class="meta">Aún no hay sesiones guardadas.</p>'}
-   <h3>Copia de seguridad</h3>
-   <div class="small"><button class="btn sec" id="exp">Exportar</button><button class="btn sec" id="imp">Importar</button></div>
-   <input type="file" id="file" accept=".json" hidden>`;
+  $("#main").innerHTML=`<div class="dayhead"><h2>${esc(d.title)}</h2><p>${esc(d.sub)} · ${dayDate(w,d).getDate()} ${MES[dayDate(w,d).getMonth()]} · ${d.ex.length} ejercicios · ${total} series</p><div class="prog"><i style="width:${total?done/total*100:0}%"></i></div></div>${exs}`;
 }
 
+// ---------- progreso
+function names(){
+  const seen=new Set(),out=[];
+  DAYS.forEach(d=>d.ex.forEach(x=>{if(!seen.has(x[0])){seen.add(x[0]);out.push({name:x[0],time:x[4]})}}));
+  for(const w in S.weeks)for(const dd in S.weeks[w])for(const n in S.weeks[w][dd])if(!seen.has(n)&&hasData(S.weeks[w][dd][n])){seen.add(n);out.push({name:n,time:false})}
+  return out;
+}
+function series(name,time){ // mejor valor por semana
+  const pts=[],cw=curWeek();
+  for(let w=1;w<=cw;w++){
+    let best=null;
+    for(const dd in (S.weeks[w]||{})){const e=S.weeks[w][dd][name];if(!e)continue;
+      e.sets.forEach(s=>{const v=num(time?s.r:s.w);if(v!==null&&(best===null||v>best))best=v})}
+    if(best!==null)pts.push({w,v:best});
+  }
+  return pts;
+}
+function spark(pts,cw){
+  if(!pts.length)return"";
+  const W=220,H=46,p=6;
+  const vs=pts.map(q=>q.v),mn=Math.min(...vs),mx=Math.max(...vs);
+  const X=w=>p+(cw<=1?0.5:(w-1)/(cw-1))*(W-2*p),Y=v=>mx===mn?H/2:H-p-(v-mn)/(mx-mn)*(H-2*p);
+  const line=pts.map(q=>X(q.w)+","+Y(q.v)).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><polyline points="${line}" fill="none" stroke="var(--acc)" stroke-width="2" vector-effect="non-scaling-stroke"/>${pts.map(q=>`<circle cx="${X(q.w)}" cy="${Y(q.v)}" r="3.5" fill="var(--acc)"/>`).join("")}</svg>`;
+}
+function viewProg(){
+  const cw=curWeek();
+  const cards=names().map(({name,time})=>{
+    const pts=series(name,time),u=time?" s":" kg",open=S.pOpen[name];
+    let top;
+    if(!pts.length)top=`<span class="meta">sin datos</span>`;
+    else{const f=pts[0],l=pts[pts.length-1],dl=l.v-f.v;
+      top=`<span class="delta ${dl>0?"up":dl<0?"dn":"eq"}">${l.v}${u}${pts.length>1?` (${dl>0?"+":""}${Math.round(dl*100)/100})`:""}</span>`}
+    let det="";
+    for(let w=cw;w>=1;w--){
+      let lines="";
+      DAYS.forEach(d=>{const e=peek(w,d.id,name);if(hasData(e))lines+=`<div>${fmtSets(e,time)||"—"}${e.note?`<div class="n">📝 ${esc(e.note)}</div>`:""}</div>`});
+      if(lines)det+=`<div class="w"><b>Sem ${w}</b> · ${fd(weekStart(w))}${lines}</div>`;
+    }
+    return `<div class="card ${open?"open":""}" data-p="${esc(name)}"><div class="top"><b>${esc(name)}</b>${top}</div>${spark(pts,cw)}<div class="det">${det||'<span class="meta">Aún no hay registros.</span>'}</div></div>`;
+  }).join("");
+  $("#main").innerHTML=`<div class="dayhead"><h2>Progreso</h2><p>Mejor ${""}peso por semana (semanas 1–${cw}). Toca un ejercicio para ver series y notas.</p></div>${cards}`;
+}
+
+// ---------- ayuda
+function viewHelp(){
+  const sec=PLAN.help.map((h,i)=>`<details ${i===0?"":""}><summary>${esc(h.title)}</summary>${h.items.map(t=>`<p class="${/^(-|->)\s/.test(t)?"b":""}">${esc(t)}</p>`).join("")}</details>`).join("");
+  $("#main").innerHTML=`<div class="dayhead"><h2>Ayuda</h2><p>Guía y reglas del plan (viene del archivo de planificación).</p></div>
+  <details open><summary>Cómo usar la app</summary>
+   <p>Cada semana arranca el domingo y se crea sola. En <b>Entreno</b> elige el día y toca un ejercicio para anotar peso, repeticiones y notas; ✓ marca la serie y arranca el descanso.</p>
+   <p>Con ◀ ▶ puedes ver y corregir semanas anteriores. Bajo cada ejercicio aparece lo de la última semana en que lo hiciste.</p>
+   <p>En <b>Progreso</b> ves la evolución del mejor peso por ejercicio y tus notas de todas las semanas.</p>
+   <p>El plan se actualiza solo cuando se actualiza la app; tus registros no se tocan.</p></details>
+  ${sec}
+  <h3>Datos</h3>
+  <div class="card"><div class="meta" style="margin-bottom:6px">Inicio de la Semana 1</div><input type="date" id="st" value="${S.start}">
+  <div class="small"><button class="btn sec" id="exp">Exportar copia</button><button class="btn sec" id="imp">Importar copia</button></div>
+  <input type="file" id="file" accept=".json" hidden></div>`;
+}
+
+function render(){
+  head();
+  ({w:viewWeek,p:viewProg,h:viewHelp}[S.view])();
+  if(S.view!=="w")scrollTo(0,0);
+}
+
+// ---------- eventos
 document.addEventListener("click",ev=>{
-  const t=ev.target.closest("[data-t],[data-o],.chk,#fin,[data-del],#exp,#imp,#timer button");
+  const t=ev.target.closest("[data-v],[data-wk],[data-t],[data-o],.chk,[data-p],#exp,#imp,#timer button");
   if(!t)return;
-  if(t.dataset.t){S.tab=t.dataset.t;save();render();scrollTo(0,0)}
-  else if(t.dataset.o!==undefined){const k=S.tab+t.dataset.o;S.open[k]=!S.open[k];save();t.parentElement.classList.toggle("open")}
+  if(t.dataset.v){S.view=t.dataset.v;save();render();scrollTo(0,0)}
+  else if(t.dataset.wk){S.wk=Math.min(curWeek(),Math.max(1,S.wk+ +t.dataset.wk));save();render();scrollTo(0,0)}
+  else if(t.dataset.t){S.day=t.dataset.t;save();render();scrollTo(0,0)}
+  else if(t.dataset.o!==undefined){const k=S.wk+S.day+t.dataset.o;S.open[k]=!S.open[k];save();t.parentElement.classList.toggle("open")}
   else if(t.classList.contains("chk")){
-    const d=dayById(S.tab),i=+t.dataset.i,k=+t.dataset.k;
-    const e=entry(d.id,i,d.ex[i][1]);e.sets[k].d=!e.sets[k].d;save();
-    if(e.sets[k].d){const time=d.ex[i][4];startTimer(time?60:(parseInt(d.ex[i][2])>=10?75:150))}
+    const d=DAYS.find(x=>x.id===S.day),i=+t.dataset.i,k=+t.dataset.k,x=d.ex[i];
+    const e=entry(S.wk,d.id,x[0],x[1]);e.sets[k].d=!e.sets[k].d;save();
+    if(e.sets[k].d)startTimer(x[4]?60:(parseInt(x[2])>=10?75:150));
     const sc=scrollY;render();scrollTo(0,sc)}
-  else if(t.id==="fin"){
-    const d=dayById(S.tab);
-    const any=Object.values(S.log[d.id]||{}).some(e=>e.sets.some(s=>s.w!==""||s.r!==""||s.d)||e.note);
-    if(!any){alert("No hay datos para guardar.");return}
-    if(!confirm("¿Guardar esta sesión en el historial y limpiar el día?"))return;
-    S.hist.push({date:new Date().toISOString(),day:d.id,data:JSON.parse(JSON.stringify(S.log[d.id]))});
-    S.log[d.id]={};S.open={};save();S.tab="h";render();scrollTo(0,0)}
-  else if(t.dataset.del!==undefined){if(confirm("¿Borrar esta sesión?")){S.hist.splice(+t.dataset.del,1);save();render()}}
+  else if(t.dataset.p!==undefined){S.pOpen[t.dataset.p]=!S.pOpen[t.dataset.p];save();t.classList.toggle("open")}
   else if(t.id==="exp"){
     const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));
-    a.download="entreno-backup-"+new Date().toISOString().slice(0,10)+".json";a.click()}
+    a.download="entreno-backup-"+iso(new Date())+".json";a.click()}
   else if(t.id==="imp"){$("#file").click()}
   else if(t.closest("#timer")){startTimer(+t.dataset.s)}
 });
 document.addEventListener("change",ev=>{
-  if(ev.target.id==="file"){
-    const f=ev.target.files[0];if(!f)return;
-    f.text().then(x=>{try{const j=JSON.parse(x);if(!j.log||!j.hist)throw 0;if(!confirm("Esto reemplaza los datos actuales. ¿Continuar?"))return;S=j;save();render()}catch(e){alert("Archivo no válido")}})}
+  const t=ev.target;
+  if(t.id==="file"){
+    const f=t.files[0];if(!f)return;
+    f.text().then(x=>{try{const j=JSON.parse(x);if(!j.weeks)throw 0;if(!confirm("Esto reemplaza los datos actuales. ¿Continuar?"))return;S=j;save();render()}catch(e){alert("Archivo no válido")}})}
+  else if(t.id==="st"&&t.value){if(confirm("Cambiar la fecha de inicio mueve el calendario de semanas. ¿Continuar?")){S.start=t.value;S.wk=curWeek();save();render()}else t.value=S.start}
 });
 document.addEventListener("input",ev=>{
-  const t=ev.target,d=dayById(S.tab);if(!d)return;
-  if(t.dataset.f){const i=+t.dataset.i;entry(d.id,i,d.ex[i][1]).sets[+t.dataset.k][t.dataset.f]=t.value;save()}
-  else if(t.dataset.n!==undefined){const i=+t.dataset.n;entry(d.id,i,d.ex[i][1]).note=t.value;save()}
+  const t=ev.target;if(S.view!=="w")return;
+  const d=DAYS.find(x=>x.id===S.day);
+  if(t.dataset.f){const i=+t.dataset.i,x=d.ex[i];entry(S.wk,d.id,x[0],x[1]).sets[+t.dataset.k][t.dataset.f]=t.value;save()}
+  else if(t.dataset.n!==undefined){const i=+t.dataset.n,x=d.ex[i];entry(S.wk,d.id,x[0],x[1]).note=t.value;save()}
 });
 
-// Temporizador de descanso
+// ---------- temporizador de descanso
 let tInt,tEnd=0;
 function startTimer(s){
   clearInterval(tInt);const el=$("#tt");el.classList.remove("end");
@@ -248,6 +311,9 @@ function startTimer(s){
   tick();tInt=setInterval(tick,250);
 }
 if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
+// al volver a la app en otra semana, saltar a la semana actual
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&S.wk<curWeek()&&S.view==="w"&&S.wk===S.lastCur){S.wk=curWeek();render()}S.lastCur=curWeek()});
+S.lastCur=curWeek();
 render();
 </script>
 </body>

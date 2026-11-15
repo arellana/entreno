@@ -22,3 +22,11 @@ USO
 - Se muestra "Ultima vez" con lo de tu sesion anterior del mismo dia.
 - "Finalizar sesion" guarda en el Historial y limpia el dia.
 - Historial > Exportar/Importar para copias de seguridad.
+
+ACTUALIZAR EL PLAN (v2)
+- El plan sale de ../plan_4dias_cuerpo_completo.txt. Tras editarlo:
+    python3 generar_plan.py
+    git add . && git commit -m "plan" && git push
+- Los registros se guardan por semana (la Semana 1 empieza el 15-nov-2026,
+  domingo a sabado) y por NOMBRE de ejercicio: si renombras un ejercicio en el
+  txt, pierde su historial; si solo cambias series/reps/orden, no.
