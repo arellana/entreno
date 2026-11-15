@@ -109,14 +109,15 @@ const DAY=864e5;
 // ---------- estado
 let S;
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-if(!S||!S.weeks){S={start:START_DEFAULT,weeks:{},view:"w",wk:null,day:null,open:{},pOpen:{}};migrate()}
+if(!S||!S.weeks){S={start:START_DEFAULT,weeks:{},view:"w",wk:null,day:null,open:{},pOpen:{}};S._mig=1}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const start0=()=>pd(S.start);
 const weekOf=d=>Math.max(1,Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate(),12)-start0())/DAY/7)+1);
 const curWeek=()=>weekOf(new Date());
 const weekStart=w=>addD(start0(),(w-1)*7);
 
-function migrate(){ // datos de la version 1 (sin semanas)
+function migrate(){
+  if(!S._mig)return;delete S._mig; // datos de la version 1 (sin semanas)
   let o;try{o=JSON.parse(localStorage.getItem("entreno_v1"))}catch(e){}
   if(!o)return;
   const put=(w,dayId,data)=>{const d=DAYS.find(x=>x.id===dayId);if(!d)return;
@@ -143,6 +144,7 @@ function lastOf(w,day,name){
 const fmtSets=(e,time)=>e.sets.filter(s=>s.w!==""||s.r!=="").map(s=>time?s.r+"s":(s.w||"-")+"kg×"+(s.r||"-")).join(" · ");
 const num=v=>{const x=parseFloat(String(v).replace(",","."));return isNaN(x)?null:x};
 
+try{migrate()}catch(e){}
 // ---------- hoy
 function todayDay(){ // dia de entreno de hoy o el proximo de esta semana
   const t=new Date(),w=curWeek(),ws=weekStart(w);
