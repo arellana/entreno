@@ -36,6 +36,7 @@ main{padding:12px;max-width:640px;margin:0 auto}
 .dayhead p{margin:2px 0 0;color:var(--mut);font-size:13px}
 .prog{height:6px;background:var(--card2);border-radius:3px;margin-top:8px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.blk{margin:14px 2px 6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
 .ex{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
 .ex.done{border-color:var(--acc2)}
 .exh{padding:12px 14px;display:flex;gap:10px;align-items:flex-start;cursor:pointer}
@@ -141,7 +142,7 @@ function lastOf(w,day,name){
   for(let v=w-1;v>=1;v--){const e=peek(v,day,name);if(hasData(e))return{v,e}}
   return null;
 }
-const fmtSets=(e,time)=>e.sets.filter(s=>s.w!==""||s.r!=="").map(s=>time?s.r+"s":(s.w||"-")+"kg×"+(s.r||"-")).join(" · ");
+const fmtSets=(e,time)=>e.sets.filter(s=>s.w!==""||s.r!=="").map(s=>time?(s.w?s.w+"kg×":"")+(s.r||"-")+"s":(s.w||"-")+"kg×"+(s.r||"-")).join(" · ");
 const num=v=>{const x=parseFloat(String(v).replace(",","."));return isNaN(x)?null:x};
 
 try{migrate()}catch(e){}
@@ -185,20 +186,19 @@ function viewWeek(){
     const l=lastOf(w,d.id,name);
     const open=S.open[w+d.id+i];
     const ph=(k,f,def)=>esc((l&&l.e.sets[k]&&l.e.sets[k][f])||def);
-    const rows=e.sets.slice(0,n).map((s,k)=>time?
-      `<div class="row t"><div class="s">${k+1}</div><input type="number" inputmode="numeric" placeholder="${ph(k,"r","seg")}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`
-      :`<div class="row"><div class="s">${k+1}</div><input type="number" inputmode="decimal" step="any" placeholder="${ph(k,"w","kg")}" value="${esc(s.w)}" data-i="${i}" data-k="${k}" data-f="w"><input type="number" inputmode="numeric" placeholder="${ph(k,"r",reps.split("-")[0])}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`).join("");
-    return `<div class="ex ${dn===n?"done":""} ${open?"open":""}">
+    const rows=e.sets.slice(0,n).map((s,k)=>`<div class="row"><div class="s">${k+1}</div><input type="number" inputmode="decimal" step="any" placeholder="${ph(k,"w","kg")}" value="${esc(s.w)}" data-i="${i}" data-k="${k}" data-f="w"><input type="number" inputmode="numeric" placeholder="${ph(k,"r",time?"seg":reps.split("-")[0])}" value="${esc(s.r)}" data-i="${i}" data-k="${k}" data-f="r"><button class="chk ${s.d?"on":""}" data-i="${i}" data-k="${k}">✓</button></div>`).join("");
+    const blk=(x_=>{const b=d.ex[i][5];const h=b&&b!==(i?d.ex[i-1][5]:null)?`<div class="blk">${esc(b)}</div>`:"";return h})();
+    return blk+`<div class="ex ${dn===n?"done":""} ${open?"open":""}">
       <div class="exh" data-o="${i}"><div class="num">${dn===n?"✓":i+1}</div>
       <div><b>${esc(name)}</b><div class="meta">${n} × ${esc(reps)}${rir?` · <em>RIR ${rir}</em>`:""} · ${dn}/${n}</div>
       ${l?`<div class="last">Sem ${l.v} → ${esc(fmtSets(l.e,time))}${l.e.note?" 📝 "+esc(l.e.note):""}</div>`:""}</div></div>
       <div class="body">
-        <div class="lbl ${time?"t":""}"><span>#</span>${time?"<span>Segundos</span>":"<span>Peso (kg)</span><span>Reps</span>"}<span></span></div>
+        <div class="lbl"><span>#</span><span>Peso (kg)${time?" · opcional":""}</span><span>${time?"Segundos":"Reps"}</span><span></span></div>
         ${rows}
         <textarea placeholder="Notas (sensaciones, técnica, ajuste de banco…)" data-n="${i}">${esc(e.note)}</textarea>
       </div></div>`;
   }).join("");
-  $("#main").innerHTML=`<div class="dayhead"><h2>${esc(d.title)}</h2><p>${esc(d.sub)} · ${dayDate(w,d).getDate()} ${MES[dayDate(w,d).getMonth()]} · ${d.ex.length} ejercicios · ${total} series</p><div class="prog"><i style="width:${total?done/total*100:0}%"></i></div></div>${exs}`;
+  $("#main").innerHTML=`<div class="dayhead"><h2>${esc(d.title)}</h2><p>${[d.sub,dayDate(w,d).getDate()+" "+MES[dayDate(w,d).getMonth()],d.ex.length+" ejercicios",total+" series"].filter(Boolean).map(esc).join(" · ")}</p><div class="prog"><i style="width:${total?done/total*100:0}%"></i></div></div>${exs}`;
 }
 
 // ---------- progreso
@@ -208,14 +208,17 @@ function names(){
   for(const w in S.weeks)for(const dd in S.weeks[w])for(const n in S.weeks[w][dd])if(!seen.has(n)&&hasData(S.weeks[w][dd][n])){seen.add(n);out.push({name:n,time:false})}
   return out;
 }
-function series(name,time){ // mejor valor por semana
+function series(name,time){ // mejor valor por semana (en ejercicios de tiempo: peso si lo hay, si no segundos)
   const pts=[],cw=curWeek();
+  if(time){let any=false;for(const w in S.weeks)for(const dd in S.weeks[w]){const e=S.weeks[w][dd][name];if(e&&e.sets.some(q=>num(q.w)>0))any=true}
+    time=any?"kg":"s"}
   for(let w=1;w<=cw;w++){
     let best=null;
     for(const dd in (S.weeks[w]||{})){const e=S.weeks[w][dd][name];if(!e)continue;
-      e.sets.forEach(s=>{const v=num(time?s.r:s.w);if(v!==null&&(best===null||v>best))best=v})}
+      e.sets.forEach(s=>{const v=num(time==="s"?s.r:s.w);if(v!==null&&(best===null||v>best))best=v})}
     if(best!==null)pts.push({w,v:best});
   }
+  pts.unit=time==="s"?" s":" kg";
   return pts;
 }
 function spark(pts,cw){
@@ -229,7 +232,7 @@ function spark(pts,cw){
 function viewProg(){
   const cw=curWeek();
   const cards=names().map(({name,time})=>{
-    const pts=series(name,time),u=time?" s":" kg",open=S.pOpen[name];
+    const pts=series(name,time),u=pts.unit,open=S.pOpen[name];
     let top;
     if(!pts.length)top=`<span class="meta">sin datos</span>`;
     else{const f=pts[0],l=pts[pts.length-1],dl=l.v-f.v;
@@ -253,7 +256,12 @@ function viewHelp(){
    <p>Cada semana arranca el domingo y se crea sola. En <b>Entreno</b> elige el día y toca un ejercicio para anotar peso, repeticiones y notas; ✓ marca la serie y arranca el descanso.</p>
    <p>Con ◀ ▶ puedes ver y corregir semanas anteriores. Bajo cada ejercicio aparece lo de la última semana en que lo hiciste.</p>
    <p>En <b>Progreso</b> ves la evolución del mejor peso por ejercicio y tus notas de todas las semanas.</p>
-   <p>El plan se actualiza solo cuando se actualiza la app; tus registros no se tocan.</p></details>
+   <p>El plan se actualiza solo cuando se actualiza la app; tus registros no se tocan.</p>
+   <p>Los ejercicios de tiempo (plancha, paseo de granjero) piden segundos; el peso es opcional.</p></details>
+  <details><summary>¿Qué es el RIR?</summary>
+   <p><b>RIR</b> = repeticiones en reserva: cuántas repeticiones más podrías haber hecho al terminar la serie antes de llegar al fallo, con buena técnica.</p>
+   <p>RIR 0 = fallo (no podías hacer ni una más). RIR 1 = te quedaba 1. RIR 2 = te quedaban 2. RIR 3 = esfuerzo suave.</p>
+   <p>Básicos: RIR 1-2. Aislamientos, poleas y máquinas: RIR 0-1. Semanas 1-2: RIR 3 para aprender la técnica. Fallo total solo en máquinas y poleas.</p></details>
   ${sec}
   <h3>Datos</h3>
   <div class="card"><div class="meta" style="margin-bottom:6px">Inicio de la Semana 1</div><input type="date" id="st" value="${S.start}">

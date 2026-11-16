@@ -2,244 +2,322 @@
 const PLAN={
  "days": [
   {
-   "id": "d1",
    "wd": "LUNES",
-   "title": "Día 1 · Cuerpo completo A",
-   "sub": "Fuerza base",
+   "title": "Día 1 · Torso A",
+   "sub": "Prioridad: pecho y espalda",
+   "id": "d1",
    "ex": [
-    [
-     "Sentadilla (barra, goblet o prensa si no tienes tecnica)",
-     3,
-     "6-8",
-     "1-2",
-     false
-    ],
     [
      "Press plano (barra o mancuernas)",
      3,
      "6-8",
-     "1-2",
-     false
-    ],
-    [
-     "Remo con apoyo al pecho (mancuernas banco 45)",
-     3,
-     "8-10",
-     "1-2",
-     false
-    ],
-    [
-     "Press hombro sentado (mancuernas o maquina)",
-     2,
-     "8-10",
-     "1-2",
-     false
-    ],
-    [
-     "Curl femoral (sentado o tumbado)",
-     2,
-     "10-12",
-     "0-1",
-     false
-    ],
-    [
-     "Curl martillo cruzado",
-     2,
-     "10-12",
-     "0-1",
-     false
-    ],
-    [
-     "Extension de triceps en polea (soga)",
-     2,
-     "10-12",
-     "0-1",
-     false
-    ]
-   ]
-  },
-  {
-   "id": "d2",
-   "wd": "MARTES",
-   "title": "Día 2 · Cuerpo completo B",
-   "sub": "Bisagra y espalda vertical",
-   "ex": [
-    [
-     "Peso muerto rumano (barra o mancuernas)",
-     3,
-     "6-8",
-     "1-2",
-     false
-    ],
-    [
-     "Jalon al pecho agarre abierto",
-     3,
-     "8-10",
-     "1",
-     false
+     "",
+     false,
+     "Pecho"
     ],
     [
      "Press inclinado (mancuernas)",
      3,
      "8-10",
-     "1-2",
-     false
+     "",
+     false,
+     "Pecho"
     ],
     [
-     "Elevaciones laterales sentado (mancuernas)",
-     3,
+     "Jalon al pecho agarre abierto",
+     4,
+     "8-10",
+     "",
+     false,
+     "Espalda"
+    ],
+    [
+     "Remo con apoyo al pecho (mancuernas banco 45)",
+     4,
+     "8-10",
+     "",
+     false,
+     "Espalda"
+    ],
+    [
+     "Elevaciones laterales sentado (LATERAL)",
+     4,
      "12-15",
-     "0-1",
-     false
+     "",
+     false,
+     "Hombros"
     ],
     [
-     "Face pull (sostener 2 s atras)",
-     3,
+     "Pajaros en maquina o mancuernas (POSTERIOR)",
+     2,
      "12-15",
-     "1",
-     false
+     "",
+     false,
+     "Hombros"
     ],
     [
-     "Curl inclinado en banco 45",
+     "Triceps sobre la cabeza en polea (CABEZA LARGA)",
      3,
      "10-12",
-     "0-1",
-     false
+     "",
+     false,
+     "Brazos"
+    ],
+    [
+     "Curl inclinado banco 45 (cabeza larga biceps)",
+     3,
+     "10-12",
+     "",
+     false,
+     "Brazos"
+    ]
+   ]
+  },
+  {
+   "wd": "MARTES",
+   "title": "Día 2 · Piernas A + hombro lateral + antebrazos",
+   "sub": "",
+   "id": "d2",
+   "ex": [
+    [
+     "Sentadilla (barra, goblet o prensa)",
+     3,
+     "6-8",
+     "",
+     false,
+     "Cuadriceps"
+    ],
+    [
+     "Extension de cuadriceps",
+     3,
+     "12-15",
+     "",
+     false,
+     "Cuadriceps"
+    ],
+    [
+     "Peso muerto rumano",
+     3,
+     "6-8",
+     "",
+     false,
+     "Isquios / gluteo"
+    ],
+    [
+     "Curl femoral",
+     3,
+     "10-12",
+     "",
+     false,
+     "Isquios / gluteo"
+    ],
+    [
+     "Gemelos de pie",
+     3,
+     "8-12",
+     "",
+     false,
+     "Gemelos"
+    ],
+    [
+     "Elevaciones laterales (mancuernas o polea)",
+     2,
+     "15-20",
+     "",
+     false,
+     "Hombro lateral"
+    ],
+    [
+     "Flexion de muneca (flexores), rango completo",
+     2,
+     "15-20",
+     "",
+     false,
+     "Antebrazos"
+    ],
+    [
+     "Extension de muneca (extensores)",
+     2,
+     "15-20",
+     "",
+     false,
+     "Antebrazos"
+    ],
+    [
+     "Paseo de granjero (agarre)",
+     2,
+     "30-40 s",
+     "",
+     true,
+     "Antebrazos"
     ],
     [
      "Plancha",
      3,
      "45-60 s",
      "",
-     true
+     true,
+     "Core"
     ]
    ]
   },
   {
-   "id": "d3",
    "wd": "JUEVES",
-   "title": "Día 3 · Cuerpo completo C",
-   "sub": "Volumen moderado",
+   "title": "Día 3 · Torso B",
+   "sub": "Prioridad: hombros",
+   "id": "d3",
    "ex": [
     [
-     "Prensa de piernas",
-     3,
-     "8-12",
-     "1",
-     false
-    ],
-    [
-     "Fondos en paralelas (asistidos) o press en maquina",
-     3,
-     "8-12",
-     "1",
-     false
-    ],
-    [
-     "Remo en polea baja o maquina",
-     3,
-     "10-12",
-     "1",
-     false
-    ],
-    [
-     "Hip thrust (barra o maquina)",
-     2,
-     "8-12",
-     "1-2",
-     false
-    ],
-    [
-     "Elevaciones laterales en polea (a una mano)",
-     3,
-     "12-15",
-     "0-1",
-     false
-    ],
-    [
-     "Extension de triceps sobre la cabeza (soga o mancuerna)",
-     3,
-     "10-12",
-     "0-1",
-     false
-    ],
-    [
-     "Curl en banco Scott",
-     2,
-     "10-12",
-     "0-1",
-     false
-    ]
-   ]
-  },
-  {
-   "id": "d4",
-   "wd": "VIERNES",
-   "title": "Día 4 · Cuerpo completo D",
-   "sub": "Unilateral y hombros",
-   "ex": [
-    [
-     "Sentadilla bulgara o zancadas con mancuernas",
+     "Press hombro sentado (mancuernas o maquina)",
      3,
      "8-10",
-     "1-2",
-     false
+     "",
+     false,
+     "Hombros"
+    ],
+    [
+     "Elevaciones laterales en polea, a una mano",
+     4,
+     "12-15",
+     "",
+     false,
+     "Hombros"
+    ],
+    [
+     "Face pull, sostener 2 s (POSTERIOR + postura)",
+     3,
+     "12-15",
+     "",
+     false,
+     "Hombros"
     ],
     [
      "Jalon agarre neutro/cerrado",
      3,
      "10-12",
-     "1",
-     false
+     "",
+     false,
+     "Espalda"
     ],
     [
-     "Press hombro (maquina o mancuernas)",
-     2,
-     "8-10",
-     "1-2",
-     false
+     "Remo en polea baja o maquina",
+     3,
+     "10-12",
+     "",
+     false,
+     "Espalda"
     ],
     [
      "Cruces en polea (media o baja)",
+     4,
+     "12-15",
+     "",
+     false,
+     "Pecho"
+    ],
+    [
+     "Press frances inclinado o sobre cabeza con mancuerna (CABEZA LARGA, pesado)",
+     3,
+     "8-10",
+     "",
+     false,
+     "Brazos"
+    ],
+    [
+     "Curl en banco Scott (cabeza corta biceps)",
+     3,
+     "10-12",
+     "",
+     false,
+     "Brazos"
+    ]
+   ]
+  },
+  {
+   "wd": "VIERNES",
+   "title": "Día 4 · Piernas B + brazos",
+   "sub": "",
+   "id": "d4",
+   "ex": [
+    [
+     "Prensa de piernas",
+     3,
+     "8-12",
+     "",
+     false,
+     "Cuadriceps / gluteo"
+    ],
+    [
+     "Sentadilla bulgara o zancadas",
+     2,
+     "8-10",
+     "",
+     false,
+     "Cuadriceps / gluteo"
+    ],
+    [
+     "Hip thrust",
+     3,
+     "8-12",
+     "",
+     false,
+     "Gluteo / isquios"
+    ],
+    [
+     "Curl femoral sentado",
+     2,
+     "12-15",
+     "",
+     false,
+     "Gluteo / isquios"
+    ],
+    [
+     "Gemelos sentado",
      3,
      "12-15",
-     "0-1",
-     false
+     "",
+     false,
+     "Gemelos"
     ],
     [
-     "Curl femoral",
-     2,
+     "Pushdown barra recta/V, codos fijos (CABEZAS LATERAL y MEDIAL)",
+     3,
      "10-12",
-     "0-1",
-     false
+     "",
+     false,
+     "Brazos"
     ],
     [
-     "Elevaciones laterales (cualquier variante)",
-     2,
-     "15-20",
-     "0",
-     false
-    ],
-    [
-     "Face pull o pajaros (deltoide posterior)",
+     "Pushdown agarre inverso o a una mano (MEDIAL, finalizador)",
      2,
      "12-15",
-     "1",
-     false
+     "",
+     false,
+     "Brazos"
     ],
     [
-     "Curl martillo cruzado",
+     "Curl de biceps (barra Z o polea)",
      2,
      "10-12",
-     "0-1",
-     false
+     "",
+     false,
+     "Brazos"
+    ],
+    [
+     "Curl martillo cruzado (braquial/braquiorradial)",
+     2,
+     "10-12",
+     "",
+     false,
+     "Brazos"
     ],
     [
      "Plancha",
      3,
      "45-60 s",
      "",
-     true
+     true,
+     "Core"
     ]
    ]
   }
@@ -248,101 +326,53 @@ const PLAN={
   {
    "title": "Resumen",
    "items": [
-    "PLAN 4 DIAS - CUERPO COMPLETO (HIPERTROFIA + PERDIDA DE GRASA)",
-    "Peso actual: 86 kg | Estatura: 171 cm | Entreno: mediodia | Autodidacta",
-    "(Actualiza el plan_integral.txt anterior: pasas de split por musculo 3 dias a cuerpo completo 4 dias, con mas frecuencia por musculo y volumen mas ordenado. Se mantienen tus objetivos: V-taper, postura con face pulls/remos, antebrazo para el bajo, sin trabajo de oblicuos.)"
+    "PLAN 4 DIAS - TORSO / PIERNA POR BLOQUES DE GRUPO MUSCULAR",
+    "Peso: 86 kg | 171 cm | Mediodia | Cada musculo se entrena 2 veces/semana",
+    "Lunes:    TORSO A   -> Pecho, Espalda, Hombros, Brazos",
+    "Martes:   PIERNAS A -> Piernas + Hombro lateral + Antebrazos",
+    "Miercoles: descanso",
+    "Jueves:   TORSO B   -> Hombros, Espalda, Pecho, Brazos",
+    "Viernes:  PIERNAS B -> Piernas + Brazos (triceps, biceps y martillo)",
+    "Sabado/Domingo: descanso (8-10k pasos)"
    ]
   },
   {
-   "title": "1. LO QUE DICE LA EVIDENCIA (y como se aplico)",
+   "title": "Como esta organizado",
    "items": [
-    "VOLUMEN (series por musculo por semana)",
-    "- Schoenfeld, Ogborn & Krieger 2017 (J Sports Sci; meta-regresion, 15 estudios): mas series semanales = mas hipertrofia. Mas alla de ~10 series/semana/musculo la evidencia es incierta. -> Apuntamos a 10-14 series semanales por musculo grande. No mas: en deficit calorico la recuperacion es el limite (tu error anterior de 24 series/dia).",
-    "FRECUENCIA",
-    "- Schoenfeld et al. 2016 (Sports Med): entrenar un musculo 2+ veces por semana dio mayor efecto que 1 vez. Ojo: cuando el volumen semanal se iguala, la frecuencia importa poco (dato de revisiones posteriores, de mi conocimiento, no verificado en esta busqueda). -> Cuerpo completo x4 = cada musculo se golpea 2-4 veces/semana con pocas series por sesion (menos fatiga local por sesion).",
-    "CARGA (pesado vs liviano)",
-    "- Schoenfeld et al. 2017 (J Strength Cond Res; 21 estudios): la hipertrofia es similar con cargas livianas o pesadas si se entrena cerca del fallo; la fuerza maxima mejora mas con cargas pesadas. -> Basicos pesados (6-10 reps) para fuerza y progresion medible; aislamientos en 10-20 reps (mas facil, menos carga articular).",
-    "PROXIMIDAD AL FALLO",
-    "- Robinson et al. 2024 (Sports Med; meta-regresion exploratoria): la hipertrofia mejora cuanto mas cerca del fallo se llega; la fuerza casi no depende de esto. Los autores aclaran que el ajuste del modelo es modesto y el RIR esta estimado. -> RIR 1-2 en basicos, RIR 0-1 en aislamientos y ultima serie. Fallo total solo en maquinas/poleas (seguras). Nunca fallo en sentadilla, peso muerto ni press con barra sin seguros.",
-    "NUTRICION (clave para \"ganar musculo y bajar grasa\")",
-    "- Morton et al. 2018 (Br J Sports Med; 49 estudios, 1863 personas): el beneficio de mas proteina se estabiliza cerca de 1.6 g/kg/dia.",
-    "- Murphy & Koehler 2021 (Scand J Med Sci Sports): un deficit de ~500 kcal/ dia tiende a frenar la ganancia de masa magra (muestra mayormente sedentaria; en entrenados avanzados hay menos evidencia).",
-    "- Barakat et al. 2020 (Strength Cond J; revision narrativa): la recomposicion (ganar musculo + perder grasa) es mas viable con mas grasa corporal de partida, entrenamiento progresivo, proteina alta y deficit moderado.",
-    "- Helms et al. 2014 (JISSN; revision narrativa): 3-6 comidas/dia con 0.4-0.5 g/kg de proteina por comida antes y despues de entrenar. -> Deficit MODERADO (~250-400 kcal), no agresivo.",
-    "Limitaciones: varios resultados salen de meta-analisis con heterogeneidad",
-    "alta; las diferencias entre protocolos son pequenas. Lo que mas pesa es",
-    "progresar en carga/repeticiones durante meses, proteina, sueno y constancia."
+    "- Cada dia se hace por BLOQUES: terminas todos los ejercicios de un grupo antes de pasar al siguiente. Nada de saltar de piernas a pecho.",
+    "- El grupo prioritario del dia va primero, cuando estas fresco.",
+    "- Cada grupo se repite 2 veces por semana (es lo que mas respalda la evidencia; un dia entero para un solo musculo lo dejaria en 1 vez).",
+    "- Los dias de pierna son pierna primero, mas bloques cortos de hombro lateral, brazos o antebrazos al final. Motivo: si todo el tren superior fuera en los dos dias de torso serian mas de 30 series por sesion y las ultimas saldrian mal. Esos bloques finales no interfieren con las piernas."
    ]
   },
   {
-   "title": "2. EXPECTATIVA REALISTA",
+   "title": "Reglas",
    "items": [
-    "\"Aumentar MUCHO la masa muscular y reducir grasa\" a la vez tiene un techo:",
-    "- Si eres intermedio, el musculo nuevo es lento (orden de 0.25-0.5 kg/mes de musculo magro como mucho), y mas lento en deficit.",
-    "- Lo realista: bajar grasa a 0.25-0.5% del peso/semana (0.2-0.4 kg) y mantener/subir fuerza. Si la fuerza sube, estas conservando/ganando musculo. La cintura y las fotos mostraran el cambio antes que la balanza.",
-    "- Para \"mucho musculo\": tras llegar a una grasa que te guste, 3-4 meses en ligero superavit (+200-300 kcal) con este mismo plan."
+    "- Progresion doble: sube peso cuando llegues al tope del rango en todas las series con RIR 1-2. Registra peso x reps x RIR.",
+    "- RIR 1-2 en basicos; RIR 0-1 en aislamientos y poleas/maquinas.",
+    "- Descanso: 2-3 min basicos, 60-90 s aislamientos, 45-60 s antebrazo.",
+    "- Calentamiento: 5 min suave + 2 series de aproximacion en el primer ejercicio de cada bloque grande (50% y 75%).",
+    "- Descarga en la semana 9 (50% de series, RIR 3-4)."
    ]
   },
   {
-   "title": "3. ESTRUCTURA SEMANAL",
+   "title": "Series semanales por musculo (directas)",
    "items": [
-    "Lunes: Dia 1 | Martes: Dia 2 | Miercoles: descanso | Jueves: Dia 3 |",
-    "Viernes: Dia 4 | Sabado y domingo: descanso (caminar 8-10k pasos).",
-    "(Cualquier orden sirve si no encadenas mas de 2 dias seguidos.)",
-    "Reglas generales",
-    "- Calentamiento: 5 min cardio suave + 2 series de aproximacion en el primer ejercicio (50% y 75% del peso de trabajo).",
-    "- Descanso: 2-3 min en basicos, 60-90 s en aislamientos.",
-    "- Duracion esperada: 60-75 min.",
-    "- Progresion doble: elige un peso, haz todas las series dentro del rango. Cuando llegues al tope del rango en TODAS las series con buena tecnica y RIR 1-2, sube peso (2.5-5% o el salto minimo) y vuelve al piso del rango.",
-    "- Anota todo (peso x reps x RIR) en el celular o cuaderno. Sin registro no hay progresion.",
-    "- Tempo: bajar en 2-3 s, subir controlado. Estiramiento profundo en aperturas, curl inclinado, pullover y tricep sobre cabeza."
+    "Pecho ......... 10  (+ indirecto del press de hombro)",
+    "Espalda ....... 14",
+    "Hombros ....... anterior 3 (press) + indirecto de los presses de pecho; lateral 10 (lun 4, mar 2, jue 4); posterior 5 (pajaros 2 + face pull 3) + indirecto de remos",
+    "Triceps ....... 11: cabeza larga 6 (sobre cabeza 3 + frances 3), lateral/medial 5 (pushdowns)",
+    "Biceps ........ 8 (larga 3 + corta 3 + curl 2) + martillo 2 + indirecto de espalda",
+    "Antebrazos .... flexores 2 + extensores 2 + braquiorradial 2 (martillo) + paseo de granjero 2; agarre indirecto en jalones, remos y peso muerto rumano (sin straps en las series ligeras).",
+    "Cuadriceps .... 11 | Isquios/gluteo 11 | Gemelos 6"
    ]
   },
   {
-   "title": "4. SERIES SEMANALES POR MUSCULO (directas)",
+   "title": "Ajustes",
    "items": [
-    "Pecho ............ 12   (+ triceps y hombro anterior de forma indirecta)",
-    "Espalda .......... 12   (+ biceps indirecto)",
-    "Cuadriceps ....... 9    (+ gluteo)",
-    "Isquios/Gluteo ... 9    (RDL 3, curl 4, hip thrust 2)",
-    "Hombro lateral ... 8    | Hombro posterior: 5",
-    "Biceps ........... 9-10 (incluye martillo para antebrazo)",
-    "Triceps .......... 5    (+ mucho trabajo indirecto de press)",
-    "Core ............. plancha 6 min/semana (sin trabajo de oblicuos cargado)",
-    "Tu zona de prioridad estetica (espalda, hombros) recibe mas volumen; el",
-    "tren inferior se mantiene en 9, suficiente para crecer en un deficit",
-    "moderado sin sobrecargar la recuperacion."
-   ]
-  },
-  {
-   "title": "5. NUTRICION (EJECUTA ESTO O EL ENTRENO NO RINDE)",
-   "items": [
-    "- Proteina: 1.8-2.2 g/kg = 155-190 g/dia (ref: Morton 2018 ~1.6 g/kg como piso; en deficit conviene mas). Repartida en 3-5 comidas de 30-40 g.",
-    "- Calorias: calcula tu mantenimiento (~30-33 kcal/kg segun actividad -> ~2600-2850 kcal; ajusta por 2-3 semanas de datos reales) y resta 250-400 kcal. Nada de deficits de 700+ kcal.",
-    "- Carbohidratos: la mayoria alrededor del entreno (pre y post).",
-    "- Grasas: 0.7-1 g/kg.",
-    "- Creatina monohidrato 3-5 g/dia (buen respaldo en la literatura; recomendacion de mi conocimiento general, no buscada aqui). Puede subir 1-2 kg de agua al inicio, no es grasa.",
-    "- Sueno: 7-9 h. Es donde se gana o se pierde el progreso en deficit.",
-    "- Pesate 3-4 veces/semana en ayunas y usa el PROMEDIO semanal. Mide la cintura 1 vez/semana. Si en 3 semanas no bajas, resta 100-150 kcal o suma pasos."
-   ]
-  },
-  {
-   "title": "6. PROGRESION Y DESCARGA",
-   "items": [
-    "- Semanas 1-2: aprende la tecnica, queda en RIR 3 (mas lejos del fallo) y encuentra tus pesos de trabajo.",
-    "- Semanas 3-8: RIR 1-2 en basicos, 0-1 en aislamientos. Progresion doble.",
-    "- Semana 9: descarga: mismos ejercicios, 50% de las series y RIR 3-4.",
-    "- Repite el ciclo. Cambia 1-2 ejercicios por bloque (no todos) para variar estimulo sin perder el registro de progresion.",
-    "- Senales de que te pasaste: fuerza que baja 2 semanas seguidas, mal sueno, dolor articular persistente, hambre/irritabilidad extrema -> descarga antes o resta 1 serie por ejercicio."
-   ]
-  },
-  {
-   "title": "7. NOTAS CORTAS",
-   "items": [
-    "- Si no dominas sentadilla o peso muerto rumano con barra, usa goblet/ prensa y mancuernas hasta grabarte y verificar tecnica (espalda neutra).",
-    "- No hagas rotaciones/inclinaciones laterales cargadas: engrosan la cintura.",
-    "- Postura: los face pulls y remos ya estan incluidos; sumale 1 min de estiramiento de pecho en marco de puerta entre series de press.",
-    "- Este plan no reemplaza consejo medico; si tienes lesiones o dolor, consulta primero."
+    "- Esta version ya incluye el volumen extra (sesiones de 75-80 min). No agregues mas series mientras estes en deficit calorico.",
+    "- Si la fuerza se estanca o baja 2 semanas seguidas, o duermes mal: quita lo ultimo que se agrego (1 serie de jalon, remo, cruces, extension de cuadriceps y gemelos; las laterales del martes y el curl del viernes).",
+    "- Si un dia se hace largo: quita series de aislamientos, no de basicos."
    ]
   }
  ]

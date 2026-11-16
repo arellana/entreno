@@ -24,7 +24,7 @@ USO
 - Historial > Exportar/Importar para copias de seguridad.
 
 ACTUALIZAR EL PLAN (v2)
-- El plan sale de ../plan_4dias_cuerpo_completo.txt. Tras editarlo:
+- El plan sale de ../plan_4dias_torso_pierna.txt. Tras editarlo:
     python3 generar_plan.py
     git add . && git commit -m "plan" && git push
 - Los registros se guardan por semana (la Semana 1 empieza el 15-nov-2026,
